@@ -26,27 +26,33 @@ bos = Airport.create!(name: "BOS")
 mia = Airport.create!(name: "MIA")
 den = Airport.create!(name: "DEN")
 
-Flight.create!(
+flight_1 = Flight.create!(
     arrival_airport: jfk, 
     departure_airport: bos,
     start: Time.current,
     flight_duration: 15.0
     )
 
-Flight.create!(
+flight_2 = Flight.create!(
     arrival_airport: bos, 
     departure_airport: bos,
     start: Time.current,
     flight_duration: 15.0)
 
-Flight.create!(
+flight_3 = Flight.create!(
     arrival_airport: mia, 
     departure_airport: mia,
     start: Time.current,
     flight_duration: 15.0)
 
-Flight.create!(
+flight_4 = Flight.create!(
     arrival_airport: den, 
     departure_airport: den,
     start: Time.current,
     flight_duration: 15.0)
+
+jfk.update!(arriving_flights: flight_1, departing_flights: flight_1)
+bos.update!(arriving_flights: flight_2, departing_flights: flight_2)
+mia.update!(arriving_flights: flight_3, departing_flights: flight_3)
+den.update!(arriving_flights: flight_4, departing_flights: flight_4)
+
