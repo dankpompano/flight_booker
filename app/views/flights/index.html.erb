@@ -2,30 +2,20 @@
 <p>Find me in app/views/flights/index.html.erb</p>
 
 <p>
-  <tbody>
-  <% @flights.each do |flight| %>
-    <tr>
-      <td><%=flight.arrival_ids%></td>
-      <td><%=flight.departure_ids%></td>
-      <%# <td><%=flight.passengers%></td> 
-      <td><%=flight.start%></td>
-    </tr>
-  </tbody>
-  
-  <%# <%= form_with url: flight_path, method: :get, local: true do |form| %>
-  <%# <%= form_with model: @flights, method: :get do |form| %>
-    <%# <% form.label :arrival_ids, "Arrival Flights" %>  
-    <%# <% form.collection_select :arrival_ids, Flight.all, :arrival_ids, :name, { prompt: 'Select an Arrival Flight' } %> 
 
-    <%# <% form.label :departure_ids, "Departure Flights" %>  
-    <%# <% form.collection_select :departure_ids, Flight.all, :departure_ids, :name, { prompt: 'Select a Departing Flight' } %> 
+  <%= form_with url: flights_path, method: :get do |form| %>
+    <%= form.label :arrival_ids, "Arrival Airports" %><br>
+    <%= form.collection_select :arriving_flights, Airport.all, :id, :name, prompt: true%><br>
+    
+    <%= form.label :departure_ids, "Departure Airports" %><br>
+    <%= form.collection_select :departure_flights, Airport.all, :id, :name, prompt: true%><br>
+    
+    <%= form.label :passengers, "Passengers" %><br>
+    <%= form.select :passengers, (1..4).to_a%><br>
 
-    <%# <% form.label :passengers, "Number of Passengers" %> 
-    <%# <% form.select :passengers, options_for_select((1..4).to_a), { prompt: 'Number of passengers' } %> 
-
-    <%# <% form.label :start, "Date" %>
-    <%# <% select_tag "flight_date", options_from_collection_for_select(@flight, 'id', 'name') %> 
-
-  <% end %> 
+    <%= form.label :start, "Dates" %><br>
+    <%= select_tag "start", options_from_collection_for_select(Flight.all, :id, :start) %><br>
+    
+    <%= form.submit "Search" %>
+  <% end %>
 </p>
-<button>Submit</button>
