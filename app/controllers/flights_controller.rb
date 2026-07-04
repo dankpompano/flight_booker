@@ -8,12 +8,11 @@ class FlightsController < ApplicationController
   end
   
   def index
-    if params[:search].present?
-      @flights = Flight.where("title LIKE ?", "%#{params[:search]}%")
-      @airport = Airport.find(params[:id])
-    else 
-      @flights = Flight.all
-    end
+    @flights = Flight.all
+    @flights = Flight.where(arrival_ids: params[:arrival_ids]) if params[:arrival_ids].present?
+    @flights = Flight.where(departure_ids: params[:departure_ids]) if params[:departure_ids].present?
+    @flights = Flight.where(pass_num: params[:pass_num]) if params[:pass_num].present?
+    @flights = Flight.where(start: params[:start]) if params[:start].present?
   end
 
   private
@@ -21,3 +20,5 @@ class FlightsController < ApplicationController
     params.require(:flight).permit(:arrival_id, :departure_ids, :flight_duration, :start)
   end
 end
+
+
