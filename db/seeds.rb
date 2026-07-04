@@ -30,6 +30,7 @@ flight_1 = Flight.create!(
     arrival_airport: jfk, 
     departure_airport: bos,
     start: Time.current,
+    pass_num: 2,
     flight_duration: 15.0
     )
 
@@ -37,18 +38,21 @@ flight_2 = Flight.create!(
     arrival_airport: bos, 
     departure_airport: bos,
     start: Time.current,
+    pass_num: 2,
     flight_duration: 15.0)
 
 flight_3 = Flight.create!(
     arrival_airport: mia, 
     departure_airport: mia,
     start: Time.current,
+    pass_num: 2,
     flight_duration: 15.0)
 
 flight_4 = Flight.create!(
     arrival_airport: den, 
     departure_airport: den,
     start: Time.current,
+    pass_num: 2,
     flight_duration: 15.0)
 
 jfk.update!(arriving_flights: flight_1, departing_flights: flight_1)

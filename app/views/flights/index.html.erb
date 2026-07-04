@@ -2,20 +2,45 @@
 <p>Find me in app/views/flights/index.html.erb</p>
 
 <p>
-
   <%= form_with url: flights_path, method: :get do |form| %>
     <%= form.label :arrival_ids, "Arrival Airports" %><br>
-    <%= form.collection_select :arriving_flights, Airport.all, :id, :name, prompt: true%><br>
+    <%= form.collection_select :arrival_ids, Airport.all, :id, :name, prompt: true%><br>
     
     <%= form.label :departure_ids, "Departure Airports" %><br>
-    <%= form.collection_select :departure_flights, Airport.all, :id, :name, prompt: true%><br>
+    <%= form.collection_select :departure_ids, Airport.all, :id, :name, prompt: true%><br>
     
     <%= form.label :pass_num, "Passengers" %><br>
     <%= form.select :pass_num, (1..4).to_a%><br>
 
     <%= form.label :start, "Dates" %><br>
-    <%= select_tag "start", options_from_collection_for_select(Flight.all, :id, :start) %><br>
+    <%= form.time_select :start%><br>
     
     <%= form.submit "Search" %>
+  <% end %>
+</p>
+
+<p>
+  <% if @flights.present? %>
+      <table>
+        <thead>
+          <tr>
+            <th>Arrival ID</th>
+            <th>Departure ID</th>
+            <th>Start Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @flights.each do |flight| %>
+            <tr>
+              <td><%= flight.arrival_ids %></td>
+              <td><%= flight.departure_ids %></td>
+              <td><%= flight.start %></td> 
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% else %>
+        <p>No flights found.</p>
   <% end %>
 </p>
