@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # get "flights/index"
   resources :flights, :bookings
   get 'search/results', to: 'flights#results', as: 'search_results'
+  get 'results/flights', to:'bookings#new', as: 'booking_submission'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
