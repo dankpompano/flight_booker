@@ -2,7 +2,7 @@
 <p>Find me in app/views/flights/index.html.erb</p>
 
 <p>
-  <%= form_with url: flights_path, method: :get do |form| %>
+  <%= form_with url: search_results_path, method: :get do |form| %>
     <%= form.label :arrival_ids, "Arrival Airports" %><br>
     <%= form.collection_select :arrival_ids, Airport.all, :id, :name, prompt: true%><br>
     

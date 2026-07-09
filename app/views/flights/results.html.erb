@@ -1,0 +1,26 @@
+<h1>Search Results</h1>
+<p>
+  <%= form_with url: bookings_path do |form| %>
+    <% if @flights.present? %> 
+      <table>
+        <thead>
+          <tr>
+            <th>Flight</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <% @flights.each do |flight| %>
+              <tr>
+                  <td><%= flight.arrival_ids %></td>
+                  <td><%= flight.departure_ids %></td>
+                  <td><%= flight.start %></td>
+                  <td><%= form.radio_button :flight, "male"%></td>
+                </tr>
+            <% end %>
+        </tbody>
+      </table>
+      <%= form.submit "Select"%>
+    <% end %>
+  <% end %>
+</p>
