@@ -20,7 +20,9 @@ class FlightsController < ApplicationController
     @flights = @flights.where(arrival_ids: params[:arrival_ids]) if params[:arrival_ids].present?
     @flights = @flights.where(departure_ids: params[:departure_ids]) if params[:departure_ids].present?
     @flights = @flights.where(pass_num: params[:pass_num]) if params[:pass_num].present?
-    @flights = @flights.where(start: params[:start]) if params[:start].present?  end
+    @flights = @flights.where(start: params[:start]) if params[:start].present?
+    @booking = Booking.new
+  end
 
   private
   def flight_params

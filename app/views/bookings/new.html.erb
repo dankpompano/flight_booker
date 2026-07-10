@@ -1,0 +1,31 @@
+<p>
+  <%= form_with model: @booking do |form| %>
+    <table>
+      <thead>
+        <tr>
+          <th>Flight</th>
+          <th>Select</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @flights.each do |flight| %>
+          <tr>
+            <td><%= flight.start %></td>
+            <td><%= flight.arrival_ids %></td>
+            <td><%= flight.id %></td>
+            <td><%= form.radio_button :flight_id, flight.id %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= form.fields_for :passenger do |passenger_form| %>
+      <%= passenger_form.label :name %>
+      <%= passenger_form.text_field :name %>
+      <%= passenger_form.label :email %>
+      <%= passenger_form.text_field :email %>
+    <% end %>
+
+    <%= form.submit %>
+  <% end %>
+</p>

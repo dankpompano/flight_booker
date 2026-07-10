@@ -1,6 +1,6 @@
 <h1>Search Results</h1>
 <p>
-  <%= form_with url: bookings_path, method: :get do |form| %>
+  <%= form_with model: @booking do |form| %>
     <% if @flights.present? %> 
       <table>
         <thead>
@@ -15,7 +15,7 @@
                   <td><%= flight.arrival_ids %></td>
                   <td><%= flight.departure_ids %></td>
                   <td><%= flight.start %></td>
-                  <td><%= form.radio_button :flight, "male"%></td>
+                  <td><%= form.radio_button :flight_id, flight.id %></td>
                 </tr>
             <% end %>
         </tbody>
